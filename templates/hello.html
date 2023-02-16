@@ -1,0 +1,36 @@
+{% load crispy_forms_tags %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    </head>
+<body>
+<h1>Hello!</h1>
+<ol>
+    {% for student in students %}
+        <li>{{ student.surname }} {{ student.name }}</li>
+    {% endfor %}
+    {% for group in groups %}
+        <li>{{ group.course }} | {{ group.title}}</li>
+    {% endfor %}
+</ol>
+<br/>
+<form action="/group" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Submit">
+</form>
+
+<br />
+
+<form action="/hi" method="post">
+    {% csrf_token %}
+    {{ teacher_form }}
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
